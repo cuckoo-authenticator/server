@@ -4,12 +4,13 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\IdGenerator\UlidGenerator;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * @ORM\Table(name="user")
  */
-class User
+class User implements UserInterface
 {
     /**
      * @ORM\Id
@@ -20,9 +21,9 @@ class User
     private $id;
 
     /**
-     * @ORM\Column(type="binary", length=32, nullable=true)
+     * @ORM\Column(type="string", length=64, nullable=true)
      */
-    private $authenticationToken;
+    private string $authenticationToken;
 
     /**
      * @ORM\Column(type="boolean")
@@ -33,6 +34,11 @@ class User
      * @ORM\OneToOne(targetEntity="App\Entity\UserRegistrationRequest", mappedBy="user")
      */
     private UserRegistrationRequest $registrationRequest;
+
+    /**
+     * @ORM\Column(type="json")
+     */
+    private $roles = [];
 
     public function __construct()
     {
@@ -48,17 +54,17 @@ class User
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getAuthenticationToken(): mixed
+    public function getAuthenticationToken(): string
     {
         return $this->authenticationToken;
     }
 
     /**
-     * @param mixed $authenticationToken
+     * @param string $authenticationToken
      */
-    public function setAuthenticationToken(mixed $authenticationToken): void
+    public function setAuthenticationToken(string $authenticationToken): void
     {
         $this->authenticationToken = $authenticationToken;
     }
@@ -94,4 +100,43 @@ class User
     {
         $this->registrationRequest = $registrationRequest;
     }
+
+    /**
+     * The public representation of the user (e.g. a username, an email address, etc.)
+     *
+     * @see UserInterface
+     */
+    public function getUserIdentifier(): string
+    {
+        return (string) $this->id;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
+    {
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials()
+    {
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
+    }
+
 }

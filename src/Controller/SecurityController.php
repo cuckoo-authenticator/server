@@ -43,11 +43,11 @@ class SecurityController extends AbstractController
             ], Response::HTTP_BAD_REQUEST);
         }
 
-        if ($user->getRegistrationRequest()->getCsrfProtectionToken() === base64_decode($request->request->get('csrfProtectionToken'))) {
+        if ($user->getRegistrationRequest()->getCsrfProtectionToken() === base64_decode($request->request->get('csrfProtectionToken')) && $request->request->has('Authentication-Token')) {
 
-            $user = $registerNewAccount->do($user, base64_decode($request->headers->get('Authentication-Token')));
+            $user = $registerNewAccount->do($user, base64_decode($request->request->get('Authentication-Token')));
 
-            return new JsonResponse([], Response::HTTP_OK);
+            return new JsonResponse([json_encode($user)], Response::HTTP_OK);
         }
 
         return new JsonResponse([

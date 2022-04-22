@@ -16,7 +16,7 @@ class RegisterNewAccount
 
     public function do(User $user, string $authenticationToken): User
     {
-        $user->setAuthenticationToken(hex2bin($authenticationToken));
+        $user->setAuthenticationToken($authenticationToken);
         $user->setIsRegistered(true);
         $this->userRepository->save($user);
 
