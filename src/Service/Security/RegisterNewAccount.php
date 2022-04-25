@@ -14,9 +14,10 @@ class RegisterNewAccount
         $this->userRepository = $userRepository;
     }
 
-    public function do(User $user, string $authenticationToken): User
+    public function do(User $user, string $authenticationToken, string $wrappedVaultKey): User
     {
         $user->setAuthenticationToken($authenticationToken);
+        $user->setWrappedVaultKey($wrappedVaultKey);
         $user->setIsRegistered(true);
         $this->userRepository->save($user);
 

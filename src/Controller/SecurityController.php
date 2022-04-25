@@ -45,7 +45,7 @@ class SecurityController extends AbstractController
 
         if ($user->getRegistrationRequest()->getCsrfProtectionToken() === base64_decode($request->request->get('csrfProtectionToken')) && $request->request->has('Authentication-Token')) {
 
-            $user = $registerNewAccount->do($user, base64_decode($request->request->get('Authentication-Token')));
+            $user = $registerNewAccount->do($user, base64_decode($request->request->get('Authentication-Token')), $request->request->get("wrappedVaultKey"));
 
             return new JsonResponse([json_encode($user)], Response::HTTP_OK);
         }

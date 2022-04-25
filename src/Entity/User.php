@@ -26,6 +26,11 @@ class User implements UserInterface
     private string $authenticationToken;
 
     /**
+     * @var @ORM\Column(type="string", length=56, nullable=true)
+     */
+    private string $wrappedVaultKey;
+
+    /**
      * @ORM\Column(type="boolean")
      */
     private bool $isRegistered;
@@ -67,6 +72,22 @@ class User implements UserInterface
     public function setAuthenticationToken(string $authenticationToken): void
     {
         $this->authenticationToken = $authenticationToken;
+    }
+
+    /**
+     * @return string
+     */
+    public function getWrappedVaultKey(): string
+    {
+        return $this->wrappedVaultKey;
+    }
+
+    /**
+     * @param string $wrappedVaultKey
+     */
+    public function setWrappedVaultKey(string $wrappedVaultKey): void
+    {
+        $this->wrappedVaultKey = $wrappedVaultKey;
     }
 
     /**
