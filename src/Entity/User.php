@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\IdGenerator\UlidGenerator;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -45,9 +46,15 @@ class User implements UserInterface
      */
     private $roles = [];
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Secret", mappedBy="user")
+     */
+    private ArrayCollection $secrets;
+
     public function __construct()
     {
         $this->isRegistered = false;
+        $this->secrets = new ArrayCollection();
     }
 
     /**
@@ -160,4 +167,11 @@ class User implements UserInterface
         // $this->plainPassword = null;
     }
 
+    /**
+     * @return ArrayCollection | Secret[]
+     */
+    public function getSecrets(): ArrayCollection
+    {
+        return $this->secrets;
+    }
 }
