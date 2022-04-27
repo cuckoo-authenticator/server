@@ -3,9 +3,11 @@
 namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\IdGenerator\UlidGenerator;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Uid\Ulid;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
@@ -27,7 +29,7 @@ class User implements UserInterface
     private string $authenticationToken;
 
     /**
-     * @var @ORM\Column(type="string", length=56, nullable=true)
+     * @ORM\Column(type="string", length=56, nullable=true)
      */
     private string $wrappedVaultKey;
 
@@ -49,7 +51,7 @@ class User implements UserInterface
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Secret", mappedBy="user")
      */
-    private ArrayCollection $secrets;
+    private Collection $secrets;
 
     public function __construct()
     {
@@ -58,9 +60,9 @@ class User implements UserInterface
     }
 
     /**
-     * @return string
+     * @return Ulid
      */
-    public function getId(): string
+    public function getId(): Ulid
     {
         return $this->id;
     }
@@ -168,9 +170,9 @@ class User implements UserInterface
     }
 
     /**
-     * @return ArrayCollection | Secret[]
+     * @return Collection | Secret[]
      */
-    public function getSecrets(): ArrayCollection
+    public function getSecrets(): Collection
     {
         return $this->secrets;
     }

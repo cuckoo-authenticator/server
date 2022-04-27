@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\IdGenerator\UlidGenerator;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Uid\Ulid;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\SecretRepository")
@@ -27,7 +29,7 @@ class Secret
     /**
      * @ORM\Column(type="string")
      */
-    private string $key;
+    private string $secretKey;
 
     /**
      * @ORM\Column(type="string")
@@ -45,9 +47,9 @@ class Secret
     }
 
     /**
-     * @return mixed
+     * @return Ulid|null
      */
-    public function getId()
+    public function getId(): ?Ulid
     {
         return $this->id;
     }
@@ -71,17 +73,17 @@ class Secret
     /**
      * @return string
      */
-    public function getKey(): string
+    public function getSecretKey(): string
     {
-        return $this->key;
+        return $this->secretKey;
     }
 
     /**
-     * @param string $key
+     * @param string $secretKey
      */
-    public function setKey(string $key): void
+    public function setSecretKey(string $secretKey): void
     {
-        $this->key = $key;
+        $this->secretKey = $secretKey;
     }
 
     /**
@@ -109,9 +111,9 @@ class Secret
     }
 
     /**
-     * @param User $user
+     * @param User|UserInterface $user
      */
-    public function setUser(User $user): void
+    public function setUser(User|UserInterface $user): void
     {
         $this->user = $user;
     }
