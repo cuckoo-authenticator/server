@@ -51,12 +51,12 @@ class User implements UserInterface
     /**
      * @ORM\OneToMany(targetEntity="Account", mappedBy="user")
      */
-    private Collection $secrets;
+    private Collection $accounts;
 
     public function __construct()
     {
         $this->isRegistered = false;
-        $this->secrets = new ArrayCollection();
+        $this->accounts = new ArrayCollection();
     }
 
     /**
@@ -172,8 +172,8 @@ class User implements UserInterface
     /**
      * @return Collection | Account[]
      */
-    public function getSecrets(): Collection
+    public function getAccounts(): Collection
     {
-        return $this->secrets;
+        return $this->accounts;
     }
 }

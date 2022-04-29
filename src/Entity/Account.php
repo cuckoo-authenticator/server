@@ -37,7 +37,7 @@ class Account
     private string $url;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="secrets")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="accounts")
      */
     private User $user;
 

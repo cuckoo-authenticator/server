@@ -16,4 +16,4 @@ security:
         # - { path: ^/profile, roles: ROLE_USER }
         - { path: ^/api/security, roles: PUBLIC_ACCESS }
         - { path: ^/api/vault, roles: ROLE_USER }
-        - { path: ^/api/secret, roles: ROLE_USER }
+        - { path: ^/api/account, roles: ROLE_USER }
