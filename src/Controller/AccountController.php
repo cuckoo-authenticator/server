@@ -3,20 +3,18 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Repository\SecretRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class SecretController extends AbstractController
+class AccountController extends AbstractController
 {
     /**
-     * @Route("/api/secret/", name="secret_post", methods={ "GET" })
-     * @param SecretRepository $secretRepository
+     * @Route("/api/secret/", name="secrets_get", methods={ "GET" })
      * @return JsonResponse
      */
-    public function secret(SecretRepository $secretRepository): JsonResponse
+    public function secrets(): JsonResponse
     {
         /** @var User $user */
         $user = $this->getUser();
@@ -25,7 +23,7 @@ class SecretController extends AbstractController
 
         foreach ($user->getSecrets() as $secret) {
              $secrets[] = array(
-                 'ulid' => $secret->getId(),
+                 'id' => $secret->getId(),
                  'name' => $secret->getName(),
                  'url' => $secret->getUrl(),
                  'secretKey' => $secret->getSecretKey(),

@@ -49,7 +49,7 @@ class User implements UserInterface
     private $roles = [];
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Secret", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="Account", mappedBy="user")
      */
     private Collection $secrets;
 
@@ -170,7 +170,7 @@ class User implements UserInterface
     }
 
     /**
-     * @return Collection | Secret[]
+     * @return Collection | Account[]
      */
     public function getSecrets(): Collection
     {

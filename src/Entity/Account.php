@@ -8,10 +8,10 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Uid\Ulid;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\SecretRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\AccountRepository")
  * @ORM\Table(name="secret")
  */
-class Secret
+class Account
 {
     /**
      * @ORM\Id

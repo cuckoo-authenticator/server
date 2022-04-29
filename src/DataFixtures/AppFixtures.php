@@ -2,7 +2,7 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Secret;
+use App\Entity\Account;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -18,14 +18,14 @@ class AppFixtures extends Fixture
         $manager->persist($user);
 
 
-        $secret = new Secret();
+        $secret = new Account();
         $secret->setName("RBJtcxcfzxYcIxUBNOgTNQSYziYIy14u5CzEH86N/svBlg==");
         $secret->setUrl("kLE03SLE0xotlhwbghfpA02c8vnq9bxGlsEUUVix434kCDlSZcY=");
         $secret->setSecretKey("M8CSLsbYqta5C/93w5xEVpWjeek/hjuVaax9uFRqdp02c2aOq5rHujzqkf0FLoHZ0Q==");
         $secret->setUser($user);
         $manager->persist($secret);
 
-        $secret = new Secret();
+        $secret = new Account();
         $secret->setName("6jtsXkebcZFQCP7dEkZux0Tm0w2uDVwUPDYPPkyEJG2AxN89");
         $secret->setUrl("jzsG6W8/yf4nijpqMpKFZ1Vvl+3bEOhCmDGaSMEsE0rU86iHnlpeDg==");
         $secret->setSecretKey("M8CSLsbYqta5C/93w5xEVpWjeek/hjuVaax9uFRqdp02c2aOq5rHujzqkf0FLoHZ0Q==");
