@@ -3,21 +3,18 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Bridge\Doctrine\IdGenerator\UlidGenerator;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Uid\Ulid;
+use Symfony\Component\Uid\Uuid;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\AccountRepository")
- * @ORM\Table(name="secret")
+ * @ORM\Table(name="account")
  */
 class Account
 {
     /**
      * @ORM\Id
-     * @ORM\Column(type="ulid", unique=true)
-     * @ORM\GeneratedValue(strategy="CUSTOM")
-     * @ORM\CustomIdGenerator(class=UlidGenerator::class)
+     * @ORM\Column(type="uuid", unique=true)
      */
     private $id;
 
@@ -47,11 +44,19 @@ class Account
     }
 
     /**
-     * @return Ulid|null
+     * @return Uuid
      */
-    public function getId(): ?Ulid
+    public function getId(): Uuid
     {
         return $this->id;
+    }
+
+    /**
+     * @param Uuid $id
+     */
+    public function setId(Uuid $id): void
+    {
+        $this->id = $id;
     }
 
     /**

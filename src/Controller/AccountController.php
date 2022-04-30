@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Uid\Uuid;
 
 class AccountController extends AbstractController
 {
@@ -26,13 +27,9 @@ class AccountController extends AbstractController
 
         foreach ($user->getAccounts() as $account) {
              $accounts[] = array(
-                 'id' => $account->getId(),
-                 'name' => $account->getName(),
-                 'url' => $account->getUrl(),
-                 'secretKey' => $account->getSecretKey(),
+                 'accountId' => $account->getId(),
              );
         }
-
 
         return new JsonResponse($accounts, Response::HTTP_OK);
     }
@@ -40,6 +37,7 @@ class AccountController extends AbstractController
     /**
      * @Route("/api/account/", name="create_account", methods={ "POST" })
      * @param Request $request
+     * @param AccountRepository $accountRepository
      * @return JsonResponse
      */
     public function createAccount(Request $request, AccountRepository $accountRepository): JsonResponse
@@ -50,6 +48,7 @@ class AccountController extends AbstractController
         $account = json_decode($request->getContent());
 
         $newAccount = new Account();
+        $newAccount->setId(new Uuid($account->id));
         $newAccount->setUser($user);
         $newAccount->setName($account->name);
         $newAccount->setSecretKey($account->secretKey);
@@ -61,5 +60,4 @@ class AccountController extends AbstractController
             ['accountId' => $newAccount->getId()]
         , Response::HTTP_OK);
     }
-
 }
