@@ -13,9 +13,25 @@ class AccountRepository extends ServiceEntityRepository
         parent::__construct($registry, Account::class);
     }
 
-    public function save(Account $secret)
+    /**
+     * Saves account to the database
+     *
+     * @param Account $account
+     * @return void
+     */
+    public function save(Account $account)
     {
-        $this->_em->persist($secret);
+        $this->_em->persist($account);
+        $this->_em->flush();
+    }
+
+    /**
+     * @param Account $account
+     * Deletes the record from the database
+     */
+    public function delete(Account $account)
+    {
+        $this->_em->remove($account);
         $this->_em->flush();
     }
 }
