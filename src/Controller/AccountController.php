@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Entity\Account;
 use App\Entity\User;
 use App\Repository\AccountRepository;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,10 +16,10 @@ use Symfony\Component\Uid\Uuid;
 class AccountController extends AbstractController
 {
     /**
-     * @Route("/api/account", name="account_get", methods={ "GET" })
+     * @Route("/api/account", name="get_account_ids", methods={ "GET" })
      * @return JsonResponse
      */
-    public function getAccount(): JsonResponse
+    public function getAccountIDs(): JsonResponse
     {
         /** @var User $user */
         $user = $this->getUser();
@@ -29,7 +28,7 @@ class AccountController extends AbstractController
 
         foreach ($user->getAccounts() as $account) {
              $accounts[] = array(
-                 'accountId' => $account->getId(),
+                 'id' => $account->getId(),
              );
         }
 
@@ -54,7 +53,7 @@ class AccountController extends AbstractController
         $newAccount->setUser($user);
         $newAccount->setName($account->name);
         $newAccount->setSecretKey($account->secretKey);
-        if($account->url) $newAccount->setUrl($account->url);
+        $newAccount->setUrl($account->url);
 
         $accountRepository->save($newAccount);
 
@@ -69,8 +68,25 @@ class AccountController extends AbstractController
      */
     public function deleteAccount(Account $account, AccountRepository $accountRepository): Response
     {
+        // TODO: make sure to check if this account belongs to the user and only then delete
+
         $accountRepository->delete($account);
 
         return new Response(null, Response::HTTP_OK);
+    }
+
+    /**
+     * @Route("/api/account/{id}", name="get_account", methods={ "GET" })
+     * @param Account $account
+     * @return JsonResponse
+     */
+    public function getAccount(Account $account): JsonResponse
+    {
+        return new JsonResponse(array(
+            'id' => $account->getId(),
+            'name' => $account->getName(),
+            'url' => $account->getUrl(),
+            'secretKey' => $account->getSecretKey(),
+        ), Response::HTTP_OK);
     }
 }
