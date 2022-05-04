@@ -20,20 +20,73 @@ class AppFixtures extends Fixture
 
 
         $account = new Account();
-        $account->setId(new Uuid("D388627E-A3FD-4F3A-B3C1-7148343F51ED"));
-        $account->setName("RBJtcxcfzxYcIxUBNOgTNQSYziYIy14u5CzEH86N/svBlg==");
-        $account->setUrl("kLE03SLE0xotlhwbghfpA02c8vnq9bxGlsEUUVix434kCDlSZcY=");
+        $account->setId(Uuid::v4());
+        $account->setName("Google GMail");
+        $account->setUrl("gmail.com");
         $account->setSecretKey("M8CSLsbYqta5C/93w5xEVpWjeek/hjuVaax9uFRqdp02c2aOq5rHujzqkf0FLoHZ0Q==");
         $account->setUser($user);
         $manager->persist($account);
 
         $account = new Account();
-        $account->setId(new Uuid("D388627E-A3FD-4F3A-B3C1-7148343F51EE"));
-        $account->setName("6jtsXkebcZFQCP7dEkZux0Tm0w2uDVwUPDYPPkyEJG2AxN89");
-        $account->setUrl("jzsG6W8/yf4nijpqMpKFZ1Vvl+3bEOhCmDGaSMEsE0rU86iHnlpeDg==");
+        $account->setId(Uuid::v4());
+        $account->setName("Facebook");
+        $account->setUrl("facebook.com");
         $account->setSecretKey("M8CSLsbYqta5C/93w5xEVpWjeek/hjuVaax9uFRqdp02c2aOq5rHujzqkf0FLoHZ0Q==");
         $account->setUser($user);
         $manager->persist($account);
+
+        $account = new Account();
+        $account->setId(Uuid::v4());
+        $account->setName("LinkedIn");
+        $account->setUrl("linkedin.com");
+        $account->setSecretKey("M8CSLsbYqta5C/93w5xEVpWjeek/hjuVaax9uFRqdp02c2aOq5rHujzqkf0FLoHZ0Q==");
+        $account->setUser($user);
+        $manager->persist($account);
+
+        $account = new Account();
+        $account->setId(Uuid::v4());
+        $account->setName("Twitter");
+        $account->setUrl("twitter.com");
+        $account->setSecretKey("M8CSLsbYqta5C/93w5xEVpWjeek/hjuVaax9uFRqdp02c2aOq5rHujzqkf0FLoHZ0Q==");
+        $account->setUser($user);
+        $manager->persist($account);
+
+        $account = new Account();
+        $account->setId(Uuid::v4());
+        $account->setName("Revenue");
+        $account->setUrl("revenue.ie");
+        $account->setSecretKey("M8CSLsbYqta5C/93w5xEVpWjeek/hjuVaax9uFRqdp02c2aOq5rHujzqkf0FLoHZ0Q==");
+        $account->setUser($user);
+        $manager->persist($account);
+
+        $account = new Account();
+        $account->setId(Uuid::v4());
+        $account->setName("MTU");
+        $account->setUrl("mtu.ie");
+        $account->setSecretKey("M8CSLsbYqta5C/93w5xEVpWjeek/hjuVaax9uFRqdp02c2aOq5rHujzqkf0FLoHZ0Q==");
+        $account->setUser($user);
+        $manager->persist($account);
+
+        $account = new Account();
+        $account->setId(Uuid::v4());
+        $account->setName("Binance");
+        $account->setUrl("binance.com");
+        $account->setSecretKey("M8CSLsbYqta5C/93w5xEVpWjeek/hjuVaax9uFRqdp02c2aOq5rHujzqkf0FLoHZ0Q==");
+        $account->setUser($user);
+        $manager->persist($account);
+
+        /*
+        for($i = 1; $i < 100; $i++)
+        {
+            $account = new Account();
+            $account->setId(Uuid::v4());
+            $account->setName($i);
+            $account->setUrl($i);
+            $account->setSecretKey($i);
+            $account->setUser($user);
+            $manager->persist($account);
+        }
+        */
 
         $manager->flush();
     }
