@@ -20,7 +20,7 @@ class AppFixtures extends Fixture
 
 
         $account = new Account();
-        $account->setId(Uuid::v4());
+        $account->setId(new Uuid("ed440e67-9b75-468c-80ec-20fb316ab83f"));
         $account->setName("Google GMail");
         $account->setUrl("gmail.com");
         $account->setSecretKey("M8CSLsbYqta5C/93w5xEVpWjeek/hjuVaax9uFRqdp02c2aOq5rHujzqkf0FLoHZ0Q==");

@@ -14,7 +14,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class SecurityController extends AbstractController
 {
     /**
-     * @Route("/api/security/request-new-account/", name="request_new_account", methods={ "POST" })
+     * @Route("/api/security/request-new-account", name="request_new_account", methods={ "POST" })
      * @param RequestNewAccount $requestNewAccount
      * @return JsonResponse
      */
@@ -23,35 +23,35 @@ class SecurityController extends AbstractController
         $user = $requestNewAccount->do();
 
         return new JsonResponse([
-            'accountId' => $user->getId(),
+            'userId' => $user->getId(),
             'csrfProtectionToken' => base64_encode($user->getRegistrationRequest()->getCsrfProtectionToken()),
         ], Response::HTTP_OK);
     }
 
     /**
-     * @Route("/api/security/register-new-account/", name="regiser_new_account", methods={ "POST" })
+     * @Route("/api/security/register-new-account", name="regiser_new_account", methods={ "POST" })
      * @param Request $request
      * @param UserRepository $userRepository
      * @param RegisterNewAccount $registerNewAccount
      * @return JsonResponse
      */
-    public function registerNewAccount(Request $request, UserRepository $userRepository, RegisterNewAccount $registerNewAccount): JsonResponse
+    public function registerNewAccount(Request $request, UserRepository $userRepository, RegisterNewAccount $registerNewAccount): Response
     {
-        if (! $user = $userRepository->find($request->request->get('accountId')) ) {
+        $body = json_decode($request->getContent());
+
+        if (! $user = $userRepository->find($body->userId) ) {
             return new JsonResponse([
                 'error' => 'User not found',
             ], Response::HTTP_BAD_REQUEST);
         }
 
-        if ($user->getRegistrationRequest()->getCsrfProtectionToken() === base64_decode($request->request->get('csrfProtectionToken')) && $request->request->has('Authentication-Token')) {
+        if ($user->getRegistrationRequest()->getCsrfProtectionToken() === base64_decode($body->csrfProtectionToken)) {
 
-            $user = $registerNewAccount->do($user, base64_decode($request->request->get('Authentication-Token')), $request->request->get("wrappedVaultKey"));
+            $user = $registerNewAccount->do($user, $body->authenticationToken, $body->wrappedVaultKey);
 
-            return new JsonResponse([json_encode($user)], Response::HTTP_OK);
+            return new Response(null, Response::HTTP_OK);
         }
 
-        return new JsonResponse([
-            'error' => 'Unable to register a user - unknown error',
-        ], Response::HTTP_BAD_REQUEST);
+        return new Response(null, Response::HTTP_BAD_REQUEST);
     }
 }
