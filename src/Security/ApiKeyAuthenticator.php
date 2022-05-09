@@ -42,8 +42,6 @@ class ApiKeyAuthenticator extends AbstractAuthenticator
             throw new CustomUserMessageAuthenticationException('No API token provided');
         }
 
-        $authenticationToken = base64_decode($authenticationToken);
-
         return new SelfValidatingPassport(
             new UserBadge($authenticationToken, function ($userIdentifier) {
                 return $this->userRepository->findOneBy(['authenticationToken' => $userIdentifier]);

@@ -13,7 +13,7 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         $user = new User();
-        $user->setAuthenticationToken("631b5763b1dea5c6cc4da351360be1576c7bc6a66a08cbd6b0f4e9fcf4e59053");
+        $user->setAuthenticationToken("KnuCk2YEbu5UnHcZuQmv/AmI2aySev629DlVCX7GRjc=");
         $user->setWrappedVaultKey("2k0ZtfsvphS4UM5EbTVHHAaktjW68gDZOWxfxAlXUxLc70ukCPxOhA==");
         $user->setIsRegistered(true);
         $manager->persist($user);
