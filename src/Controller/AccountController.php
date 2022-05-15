@@ -82,6 +82,8 @@ class AccountController extends AbstractController
      */
     public function getAccount(Account $account): JsonResponse
     {
+        // TODO: make sure to check if this account belongs to the user and only then return it
+
         return new JsonResponse(array(
             'id' => $account->getId(),
             'name' => $account->getName(),

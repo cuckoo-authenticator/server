@@ -13,67 +13,63 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         $user = new User();
-        $user->setAuthenticationToken("KnuCk2YEbu5UnHcZuQmv/AmI2aySev629DlVCX7GRjc=");
-        $user->setWrappedVaultKey("2k0ZtfsvphS4UM5EbTVHHAaktjW68gDZOWxfxAlXUxLc70ukCPxOhA==");
+        $user->setAuthenticationToken("cRudtDOOkvPZpZReaZFpZUYkEvKj+fDg0n5tk6FQfuk=");
+        $user->setWrappedVaultKey("puebL1wK09DIv0WNZmH4Y96zZ3Pm7g3dcqwJR1YHDP4PYNgmjOK0Ng==");
         $user->setIsRegistered(true);
         $manager->persist($user);
 
 
         $account = new Account();
-        $account->setId(new Uuid("ed440e67-9b75-468c-80ec-20fb316ab83f"));
-        $account->setName("Google GMail");
-        $account->setUrl("gmail.com");
-        $account->setSecretKey("M8CSLsbYqta5C/93w5xEVpWjeek/hjuVaax9uFRqdp02c2aOq5rHujzqkf0FLoHZ0Q==");
+        $account->setId(Uuid::v4());
+        $account->setName("ke1wOpZ/jauU7NpuVSsA5zXW9MkQ9rKtGV8zR/ctJYTuHg==");
+        $account->setUrl("k58if2M6A5X5r8qKBKTa7lMxRoJ3sVfw4YEiJcXQ9PPjEZtPGnY=");
+        $account->setSecretKey("FbiNACbzm3O22+QpFNuosLwHjbWARrIXs9QXKRGgQVIwgRmuLYE=");
         $account->setUser($user);
         $manager->persist($account);
 
         $account = new Account();
         $account->setId(Uuid::v4());
-        $account->setName("Facebook");
-        $account->setUrl("facebook.com");
-        $account->setSecretKey("M8CSLsbYqta5C/93w5xEVpWjeek/hjuVaax9uFRqdp02c2aOq5rHujzqkf0FLoHZ0Q==");
+        $account->setName("ke1wOpZ/jauU7NpuVSsA5zXW9MkQ9rKtGV8zR/ctJYTuHg==");
+        $account->setUrl("k58if2M6A5X5r8qKBKTa7lMxRoJ3sVfw4YEiJcXQ9PPjEZtPGnY=");
+        $account->setSecretKey("FbiNACbzm3O22+QpFNuosLwHjbWARrIXs9QXKRGgQVIwgRmuLYE=");
         $account->setUser($user);
         $manager->persist($account);
 
         $account = new Account();
         $account->setId(Uuid::v4());
-        $account->setName("LinkedIn");
-        $account->setUrl("linkedin.com");
-        $account->setSecretKey("M8CSLsbYqta5C/93w5xEVpWjeek/hjuVaax9uFRqdp02c2aOq5rHujzqkf0FLoHZ0Q==");
+        $account->setName("ke1wOpZ/jauU7NpuVSsA5zXW9MkQ9rKtGV8zR/ctJYTuHg==");
+        $account->setUrl("k58if2M6A5X5r8qKBKTa7lMxRoJ3sVfw4YEiJcXQ9PPjEZtPGnY=");
+        $account->setSecretKey("FbiNACbzm3O22+QpFNuosLwHjbWARrIXs9QXKRGgQVIwgRmuLYE=");
         $account->setUser($user);
         $manager->persist($account);
 
         $account = new Account();
         $account->setId(Uuid::v4());
-        $account->setName("Twitter");
-        $account->setUrl("twitter.com");
-        $account->setSecretKey("M8CSLsbYqta5C/93w5xEVpWjeek/hjuVaax9uFRqdp02c2aOq5rHujzqkf0FLoHZ0Q==");
+        $account->setName("ke1wOpZ/jauU7NpuVSsA5zXW9MkQ9rKtGV8zR/ctJYTuHg==");
+        $account->setUrl("k58if2M6A5X5r8qKBKTa7lMxRoJ3sVfw4YEiJcXQ9PPjEZtPGnY=");
+        $account->setSecretKey("FbiNACbzm3O22+QpFNuosLwHjbWARrIXs9QXKRGgQVIwgRmuLYE=");
         $account->setUser($user);
         $manager->persist($account);
 
         $account = new Account();
         $account->setId(Uuid::v4());
-        $account->setName("Revenue");
-        $account->setUrl("revenue.ie");
-        $account->setSecretKey("M8CSLsbYqta5C/93w5xEVpWjeek/hjuVaax9uFRqdp02c2aOq5rHujzqkf0FLoHZ0Q==");
+        $account->setName("ke1wOpZ/jauU7NpuVSsA5zXW9MkQ9rKtGV8zR/ctJYTuHg==");
+        $account->setUrl("k58if2M6A5X5r8qKBKTa7lMxRoJ3sVfw4YEiJcXQ9PPjEZtPGnY=");
+        $account->setSecretKey("FbiNACbzm3O22+QpFNuosLwHjbWARrIXs9QXKRGgQVIwgRmuLYE=");
         $account->setUser($user);
         $manager->persist($account);
 
         $account = new Account();
         $account->setId(Uuid::v4());
-        $account->setName("MTU");
-        $account->setUrl("mtu.ie");
-        $account->setSecretKey("M8CSLsbYqta5C/93w5xEVpWjeek/hjuVaax9uFRqdp02c2aOq5rHujzqkf0FLoHZ0Q==");
+        $account->setName("ke1wOpZ/jauU7NpuVSsA5zXW9MkQ9rKtGV8zR/ctJYTuHg==");
+        $account->setUrl("k58if2M6A5X5r8qKBKTa7lMxRoJ3sVfw4YEiJcXQ9PPjEZtPGnY=");
+        $account->setSecretKey("FbiNACbzm3O22+QpFNuosLwHjbWARrIXs9QXKRGgQVIwgRmuLYE=");
         $account->setUser($user);
         $manager->persist($account);
 
-        $account = new Account();
-        $account->setId(Uuid::v4());
-        $account->setName("Binance");
-        $account->setUrl("binance.com");
-        $account->setSecretKey("M8CSLsbYqta5C/93w5xEVpWjeek/hjuVaax9uFRqdp02c2aOq5rHujzqkf0FLoHZ0Q==");
-        $account->setUser($user);
-        $manager->persist($account);
+
+
+
 
         /*
         for($i = 1; $i < 100; $i++)

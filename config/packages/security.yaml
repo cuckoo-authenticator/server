@@ -14,6 +14,7 @@ security:
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
-        - { path: ^/api/security, roles: PUBLIC_ACCESS }
-        - { path: ^/api/vault, roles: ROLE_USER }
+        - { path: ^/api/security/request-new-account, roles: PUBLIC_ACCESS }
+        - { path: ^/api/security/register-new-account, roles: PUBLIC_ACCESS }
+        - { path: ^/api/security/login, roles: ROLE_USER }
         - { path: ^/api/account, roles: ROLE_USER }

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Repository\UserRepository;
 use App\Service\Security\RegisterNewAccount;
 use App\Service\Security\RequestNewAccount;
@@ -53,5 +54,20 @@ class SecurityController extends AbstractController
         }
 
         return new Response(null, Response::HTTP_BAD_REQUEST);
+    }
+
+    /**
+     * @Route("/api/security/login", name="login", methods={ "POST" })
+     * @param UserRepository $userRepository
+     * @return JsonResponse
+     */
+    public function login(UserRepository $userRepository): JsonResponse
+    {
+        /** @var User $user */
+        $user = $this->getUser();
+
+        return new JsonResponse(array(
+            'wrappedVaultKey' => $user->getWrappedVaultKey(),
+        ), Response::HTTP_OK);
     }
 }
