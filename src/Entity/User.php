@@ -24,7 +24,7 @@ class User implements UserInterface
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=44, nullable=true)
+     * @ORM\Column(type="string", length=44, nullable=true, unique=true)
      */
     private string $authenticationToken;
 
