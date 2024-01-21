@@ -1,0 +1,20 @@
+# syntax=docker/dockerfile:1
+
+FROM golang:1.21 AS build-stage
+
+WORKDIR /go/src/app
+COPY . .
+
+RUN CGO_ENABLED=0 GOOS=linux go build -o /main
+
+FROM alpine:3.19 AS build-release-stage
+
+RUN apk add --purge --no-cache memcached supervisor
+
+WORKDIR /
+
+COPY --from=build-stage /main /main
+
+EXPOSE 80
+
+ENTRYPOINT ["sh","-c","/usr/bin/memcached -p 11211 -u root -d && /main"]

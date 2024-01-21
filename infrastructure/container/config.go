@@ -1,24 +1,27 @@
 package container
 
+import "os"
+
 type Config struct {
 	DBConfig
 }
+
 type DBConfig struct {
-	DatabaseHost     string `required:"true" envconfig:"database_host"`
-	DatabasePort     int    `required:"true" envconfig:"database_port"`
-	DatabaseUsername string `required:"true" envconfig:"database_username"`
-	DatabasePassword string `required:"true" envconfig:"database_password"`
-	DatabaseName     string `required:"true" envconfig:"database_name"`
+	DatabaseHost     string
+	DatabasePort     string
+	DatabaseUser     string
+	DatabasePassword string
+	DatabaseName     string
 }
 
 func getConfig() *Config {
 	return &Config{
 		DBConfig: DBConfig{
-			DatabaseHost:     "localhost",
-			DatabasePort:     3306,
-			DatabaseUsername: "root",
-			DatabasePassword: "",
-			DatabaseName:     "cuckoo",
+			DatabaseHost:     os.Getenv("CUCKOO_DATABASE_HOST"),
+			DatabasePort:     os.Getenv("CUCKOO_DATABASE_PORT"),
+			DatabaseUser:     os.Getenv("CUCKOO_DATABASE_USER"),
+			DatabasePassword: os.Getenv("CUCKOO_DATABASE_PASSWORD"),
+			DatabaseName:     os.Getenv("CUCKOO_DATABASE_NAME"),
 		},
 	}
 }

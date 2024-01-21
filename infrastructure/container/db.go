@@ -3,7 +3,6 @@ package container
 import (
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
-	"strconv"
 )
 
 func createDBConnection(config *Config) *gorm.DB {
@@ -16,5 +15,5 @@ func createDBConnection(config *Config) *gorm.DB {
 }
 
 func buildDSN(config *Config) string {
-	return config.DBConfig.DatabaseUsername + ":" + config.DBConfig.DatabasePassword + "@tcp(" + config.DBConfig.DatabaseHost + ":" + strconv.Itoa(config.DBConfig.DatabasePort) + ")/" + config.DBConfig.DatabaseName + "?charset=utf8mb4&parseTime=True&loc=Local"
+	return config.DBConfig.DatabaseUser + ":" + config.DBConfig.DatabasePassword + "@tcp(" + config.DBConfig.DatabaseHost + ":" + config.DBConfig.DatabasePort + ")/" + config.DBConfig.DatabaseName + "?charset=utf8mb4&parseTime=True&loc=Local"
 }

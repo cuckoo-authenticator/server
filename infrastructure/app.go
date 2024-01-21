@@ -11,7 +11,7 @@ func Start(container container.Container) error {
 
 	route.PrepareRoutes(e, container)
 
-	e.Logger.Fatal(e.Start(":8001"))
+	e.Logger.Fatal(e.Start(":80"))
 
 	return nil
 }
